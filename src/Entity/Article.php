@@ -45,7 +45,7 @@ class Article {
 	public function getName(){
 		return $this->name;
 	}
-	public function setŃame($value){
+	public function setName($value){
 		$this->name = $value;
 	}
 	public function getSlug(){

@@ -11,7 +11,7 @@ require('../vendor/autoload.php');
 $container = new Container();
 
 $container->set('db', function(){
-	return DatabaseFactory::create;
+	return DatabaseFactory::create();
 });
 
 $container->set('templating', function() {
@@ -20,7 +20,7 @@ $container->set('templating', function() {
 
 AppFactory::setContainer($container);
 
-// initialise application
+// initialize application
 $app = AppFactory::create();
 
 // define page routes
@@ -28,6 +28,6 @@ $app->get('/', '\App\Controller\DefaultController:homepage');
 $app->get('/admin', '\App\Controller\AdminController:view');
 $app->any('/admin/create', '\App\Controller\AdminController:create');
 $app->any('/admin/{id}', '\App\Controller\AdminController:edit');
-
+$app->any('/article/{slug}','\App\Controller\ArticleController:view');  
 // finish
 $app->run();
