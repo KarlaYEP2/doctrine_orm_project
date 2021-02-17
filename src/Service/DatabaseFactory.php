@@ -13,7 +13,7 @@ class DatabaseFactory {
 	*/
 	public static function create(){
 		$isDevMode = true;
-		$metadata = Setup::createAnnotationMetadataconfiguration([__DIR__ . '/../Entity'], $isDevMode);
+		$metadata = Setup::createAnnotationMetadataConfiguration([__DIR__ . '/../Entity'], $isDevMode);
 
 		$dbParams = [
 			'driver' => 'pdo_mysql',

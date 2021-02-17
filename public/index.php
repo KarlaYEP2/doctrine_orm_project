@@ -20,7 +20,7 @@ $container->set('templating', function() {
 
 AppFactory::setContainer($container);
 
-// initialize application
+// initialise application
 $app = AppFactory::create();
 
 // define page routes
@@ -28,6 +28,7 @@ $app->get('/', '\App\Controller\DefaultController:homepage');
 $app->get('/admin', '\App\Controller\AdminController:view');
 $app->any('/admin/create', '\App\Controller\AdminController:create');
 $app->any('/admin/{id}', '\App\Controller\AdminController:edit');
-$app->any('/article/{slug}','\App\Controller\ArticleController:view');  
+$app->get('/article/{slug}', '\App\Controller\ArticleController:view');
+
 // finish
 $app->run();
