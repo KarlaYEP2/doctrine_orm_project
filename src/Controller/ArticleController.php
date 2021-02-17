@@ -8,7 +8,24 @@ use Slim\Execption\HttpNotFoundException;
 
 class ArticleController extends Controller
 {
-    public function viewPK(Request $request, Response $response, $args = [])
+    public function view(Request $request, Response $response, $args = [])
+    {
+        
+    	$qb = $this->ci->get('db')->CreateQueryBuilder();
+
+    	$qb->select('a')
+    		->from('App\Entity\article', 'a')
+    		->where('a.slug = :slug')
+    		->setParameter('slug', $args['slug'])
+
+    	$query = $qb->getQuery();
+
+    	$article = $query->getSingleResult();
+
+        return $this->renderPage($response, 'article.html', ['article' => $article]);
+    }
+}
+ public function viewRP(Request $request, Response $response, $args = [])
     {
         $article = $this->ci->get('db')->find('App\Entity\Article')->findOneBy([
         	'slug' => $args['slug']
@@ -25,7 +42,7 @@ class ArticleController extends Controller
 
 class ArticleController extends Controller
 {
-    public function view(Request $request, Response $response)
+    public function viewPK(Request $request, Response $response)
     {
         $article = $this->ci->get('db')->find('App\Entity\Article', 1);
         return $this->renderPage($response, 'article.html', ['article' => $article]);

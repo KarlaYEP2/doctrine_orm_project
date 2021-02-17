@@ -15,6 +15,7 @@ class DefaultController extends Controller
     		$query = $this->ci->get('db')->createQuery($dql);
 
     	$articles = $query->getResult()
+    	
         return $this->renderPage($response, 'homepage.html',['articles' => $article
     	]);
 
