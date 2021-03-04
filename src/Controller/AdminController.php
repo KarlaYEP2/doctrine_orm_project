@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controller;
+use App\Entity\Article;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpNotFoundException;
@@ -47,14 +49,11 @@ class AdminController extends Controller
             $article->setSlug($request->getParam('slug'));
             $article->setImage($request->getParam('image'));
             $article->setBody($request->getParam('body'));
-
             $article->setAuthor(
-                $this->ci->get('db')->find('App\Entity\Article', $request->getParam('author'))
+                $this->ci->get('db')->find('App\Entity\Author', $request->getParam('author'))
             );
-
             $this->ci->get('db')->persist($article);
             $this->ci->get('db')->flush();
-
         }
 
         $authors = $this->ci->get('db')->getRepository('App\Entity\Author')->findBy([], [
