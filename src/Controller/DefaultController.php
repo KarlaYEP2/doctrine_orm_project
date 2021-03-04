@@ -9,28 +9,26 @@ class DefaultController extends Controller
 {
     public function homepage(Request $request, Response $response)
     {
-    	$dql = "SELECT a FROM App\Entity\Article a 
-    		WHERE a.published <= CURRENT_TIMESTAMP()
-    		IRDER BY a.published DESC";
-    		$query = $this->ci->get('db')->createQuery($dql);
-
-    	$articles = $query->getResult()
+    	$dql = "SELECT a FROM App\Entity\Article a
+    			WHERE a.publiched <= CURRENT_TIMESTAMP()
+    			ORDER BY a.publiched DESC";
     	
-        return $this->renderPage($response, 'homepage.html',['articles' => $article
-    	]);
+    	$query = $this->ci->get('db')->createQuery($dql);
 
+    	$articles = $query->getResult();
 
+        return $this->renderPage($response, 'homepage.html', [
+        		'articles' => $articles
+        ]);
     }
-}
 
-    public function homepage(Request $request, Response $response)
+    public function homepageAll(Request $request, Response $response)
     {
     	$articles = $this->ci->get('db')->getRepository('App\Entity\Article')->findBy([], [
-    		'published' => 'DESC'
+    		'publiched' => 'DESC'
     	]);
-        return $this->renderPage($response, 'homepage.html',['articles' => $article
-    	]);
-
-
+        return $this->renderPage($response, 'homepage.html', [
+        		'articles' => $articles
+        ]);
     }
 }

@@ -1,12 +1,13 @@
 <?php
+
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collection\ArrayCollection;
 
 /**
 * @Entity
 */
-class Author {
+class Author{
 	/**
 	* @Column(type="integer")
 	* @Id
@@ -21,7 +22,7 @@ class Author {
 
 	/**
 	* @OneToMany(targetEntity="Article", mappedBy="author")
-	* @OrderBy({"published" = "DESC"})
+	* @OrderBy({"publiched" = "DESC"})
 	*/
 	private $articles;
 
@@ -48,4 +49,4 @@ class Author {
 	public function getArticles(){
 		return $this->articles;
 	}
-} 
+}

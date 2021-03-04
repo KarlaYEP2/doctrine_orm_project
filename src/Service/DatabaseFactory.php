@@ -6,10 +6,10 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 class DatabaseFactory {
-
 	/**
 	* Create Doctrine Entity Manager
 	* @return EntityManager
+	*
 	*/
 	public static function create(){
 		$isDevMode = true;
@@ -23,6 +23,7 @@ class DatabaseFactory {
 			'dbname' => 'doctrineorm',
 			'charset' => 'utf8'
 		];
+
 		return EntityManager::create($dbParams, $metadata);
 	}
 
